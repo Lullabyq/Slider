@@ -1,0 +1,21 @@
+// main: style.less
+
+.rect() {
+    width: 1000px;
+    height: 500px;
+    border-radius: 10px;
+}
+
+// Bind picture from img folder to div
+.generate-back(@n, @i: 1) when (@i <= @n) {
+    .img-@{i} {
+        background: ~"url(../img/food@{i}.jpg)";
+        background-size: cover;
+        position: relative;
+
+        & span {
+            position: absolute;
+        }
+    }
+    .generate-back(@n, (@i + 1))
+}

@@ -1,0 +1,139 @@
+*,
+*::after,
+::before {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+h1 {
+  text-align: center;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  user-select: none;
+}
+.container__btn {
+  position: relative;
+  margin: 70px auto;
+  width: 1000px;
+  height: 500px;
+  border-radius: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+.btn {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  box-shadow: 1px 1px 10px #8d8b8b;
+  border-radius: calc(45px / 2);
+  border: none;
+  position: absolute;
+  z-index: 1000;
+  cursor: pointer;
+  transition: transform 0.1s linear;
+}
+.btn .arrow {
+  width: calc(45px / 3);
+  height: calc(45px / 3);
+  opacity: 0.6;
+  transition: opacity 0.1s linear;
+}
+.btn .arrow--right {
+  margin-left: 7px;
+}
+.btn .arrow--left {
+  margin-right: 7px;
+}
+.btn:hover {
+  border: 1px solid #777676;
+  box-shadow: 1px 1px 10px #a6a5a5;
+  transform: scale(1.1);
+}
+.btn:hover .arrow {
+  opacity: 1;
+}
+.btn--disabled {
+  display: none;
+}
+.container {
+  width: 1000px;
+  height: 500px;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+.container .track {
+  position: absolute;
+  display: flex;
+  left: 0;
+  transition: left 0.3s ease-in-out;
+}
+.container .track .slider__img {
+  width: 1000px;
+  height: 500px;
+  border-radius: 10px;
+  min-width: 1000px;
+}
+.container .track .slider__img .progress {
+  display: flex;
+  justify-content: center;
+  width: 80px;
+  height: 25px;
+  border-radius: 10px;
+  opacity: 0.65;
+  background-color: #474747;
+  color: #fff;
+  font-size: 18px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+}
+.container .track .img-1 {
+  background: url(../img/food1.jpg);
+  background-size: cover;
+  position: relative;
+}
+.container .track .img-1 span {
+  position: absolute;
+}
+.container .track .img-2 {
+  background: url(../img/food2.jpg);
+  background-size: cover;
+  position: relative;
+}
+.container .track .img-2 span {
+  position: absolute;
+}
+.container .track .img-3 {
+  background: url(../img/food3.jpg);
+  background-size: cover;
+  position: relative;
+}
+.container .track .img-3 span {
+  position: absolute;
+}
+.container .track .img-4 {
+  background: url(../img/food4.jpg);
+  background-size: cover;
+  position: relative;
+}
+.container .track .img-4 span {
+  position: absolute;
+}
+.container .track .img-5 {
+  background: url(../img/food5.jpg);
+  background-size: cover;
+  position: relative;
+}
+.container .track .img-5 span {
+  position: absolute;
+}
+.container .track .img-6 {
+  background: url(../img/food6.jpg);
+  background-size: cover;
+  position: relative;
+}
+.container .track .img-6 span {
+  position: absolute;
+}
