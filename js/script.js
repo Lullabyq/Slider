@@ -23,11 +23,50 @@ function toggleBtnVisibility() {
   }
 }
 
+// When you generate mouseover event on slider it stops autoScroll
+// When mouseout event happens slider starts autoscroll
+function createInterval() {
+  return setInterval(() => {
+    if (position == -trackLength) {
+      position = 0
+      btnRight.classList.remove('btn--disabled')
+      btnLeft.click()
+    } else {
+      btnRight.click()
+    }
+  }, 4000)
+}
+
+function createAutoScroll() {
+  new Promise(res => {
+    id = createInterval()
+    res(id)
+  }).then(id => {
+    box.addEventListener('mouseenter', clear)
+  }).then(() => {
+    box.addEventListener('mouseleave', set)
+  })
+}
+
+// EventListener callback func in order to remove listener
+function clear() {
+  clearInterval(id)
+}
+
+// EventListener callback func in order to remove listener
+function set() {
+  createAutoScroll()
+  box.removeEventListener('mouseenter', clear)
+  box.removeEventListener('mouseleave', set)
+}
+
 let track = document.querySelector('.track')
 let position = 0
 let count = 6
 let trackLength = 1000 * (count - 1)
+let id
 
+createAutoScroll()
 toggleBtnVisibility()
 
 box.addEventListener('click', function(event) {
