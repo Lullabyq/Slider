@@ -26,17 +26,24 @@
 
     <h1>Huge slider</h1>
     <div class="container__btn">
-        <button class="btn btn--left">
+        <button class="btn btn--arrow btn--left">
             <svg class="arrow arrow--left">
                 <use xlink: href="#arrowLeft"></use>
             </svg>
         </button>
-        <button class="btn btn--right">
+        <button class="btn btn--arrow btn--right">
             <svg class="arrow arrow--right">
                 <use xlink: href="#arrowRight"></use>
             </svg>
         </button>
         <div class="container">
+            <div class="slider__text">
+                <h2 class="title">What is Lorem Ipsum?</h2>
+                <div class="message">
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                </div>
+                <button class="btn btn--more">Learn more</button>
+            </div>
             <!-- In order to add a new image:
                     1) Add a new div below
                     2) Change attr of generate-back() mixin in track.less
