@@ -3,7 +3,9 @@
 ::before {
   box-sizing: border-box;
 }
-body {
+body,
+html {
+  height: 100%;
   margin: 0;
 }
 h1 {
@@ -14,9 +16,11 @@ h1 {
 .container__btn {
   position: relative;
   margin: 70px auto;
-  width: 1000px;
-  height: 500px;
+  max-width: 1000px;
+  max-height: 500px;
   border-radius: 10px;
+  width: 85%;
+  height: 70%;
   cursor: pointer;
   user-select: none;
 }
@@ -58,14 +62,17 @@ h1 {
   opacity: 1;
 }
 .btn--more {
+  text-decoration: none;
   width: 140px;
   height: 50px;
+  color: #000;
   font-size: 14px;
   text-transform: uppercase;
   border-radius: 15px;
+  position: absolute;
   left: 50%;
-  bottom: 40px;
   transform: translateX(-50%);
+  bottom: 40px;
 }
 .btn--more:hover {
   box-shadow: 1px 1px 10px #5a5858;
@@ -74,25 +81,30 @@ h1 {
   display: none;
 }
 .container {
-  width: 1000px;
-  height: 500px;
+  width: 100%;
+  height: 100%;
   border-radius: 10px;
   overflow: hidden;
   position: relative;
 }
 .container .track {
+  width: 100%;
+  height: 100%;
   position: absolute;
   display: flex;
   left: 0;
   transition: left 0.3s ease-in-out;
 }
 .container .track .slider__img {
-  width: 1000px;
-  height: 500px;
+  width: 100%;
+  height: 100%;
   border-radius: 10px;
-  min-width: 1000px;
+  min-width: 100%;
 }
 .container .track .slider__img .progress {
+  position: absolute;
+  bottom: 15px;
+  right: 20px;
   display: flex;
   justify-content: center;
   width: 80px;
@@ -105,7 +117,7 @@ h1 {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
 }
 .container .track .img-1 {
-  background: url(../img/food1.jpg);
+  background: url(../img/food1.jpg) center;
   background-size: cover;
   position: relative;
 }
@@ -113,7 +125,7 @@ h1 {
   position: absolute;
 }
 .container .track .img-2 {
-  background: url(../img/food2.jpg);
+  background: url(../img/food2.jpg) center;
   background-size: cover;
   position: relative;
 }
@@ -121,7 +133,7 @@ h1 {
   position: absolute;
 }
 .container .track .img-3 {
-  background: url(../img/food3.jpg);
+  background: url(../img/food3.jpg) center;
   background-size: cover;
   position: relative;
 }
@@ -129,7 +141,7 @@ h1 {
   position: absolute;
 }
 .container .track .img-4 {
-  background: url(../img/food4.jpg);
+  background: url(../img/food4.jpg) center;
   background-size: cover;
   position: relative;
 }
@@ -137,7 +149,7 @@ h1 {
   position: absolute;
 }
 .container .track .img-5 {
-  background: url(../img/food5.jpg);
+  background: url(../img/food5.jpg) center;
   background-size: cover;
   position: relative;
 }
@@ -145,7 +157,7 @@ h1 {
   position: absolute;
 }
 .container .track .img-6 {
-  background: url(../img/food6.jpg);
+  background: url(../img/food6.jpg) center;
   background-size: cover;
   position: relative;
 }
@@ -158,6 +170,7 @@ h1 {
   left: 0;
   z-index: 100;
   width: 30%;
+  min-width: 270px;
   height: 100%;
   padding: 15px;
   font-size: 18px;
@@ -165,14 +178,75 @@ h1 {
   opacity: 0.9;
   box-shadow: 0px 0px 10px #8d8b8b;
 }
+.slider__text .title--short {
+  display: none;
+  text-align: center;
+  margin: 10px 0 20px;
+}
 .slider__text .message {
-  margin-top: 40px;
-  height: 250px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  height: 270px;
   line-height: 1.5;
   overflow: auto;
   padding-left: calc(45px/2);
   text-align: justify;
 }
-.slider__text .message {
-  margin-bottom: 20px;
+.slider__text .message ol {
+  padding-left: 20px;
+}
+.slider__text .message em {
+  margin: 20px 0 20px;
+}
+.slider__text .message--short {
+  display: none;
+  margin: 10px 20% 10px 0;
+  min-width: 130;
+}
+@media (max-width: 767px) {
+  .container__btn {
+    margin: 40px auto;
+  }
+  .slider__text {
+    width: 100%;
+    height: 30%;
+    min-height: 140px;
+  }
+  .slider__text .title {
+    display: none;
+  }
+  .slider__text .title--short {
+    display: block;
+  }
+  .slider__text .message {
+    display: none;
+  }
+  .slider__text .message--short {
+    display: block;
+  }
+  .btn--more {
+    font-size: 0;
+    width: 80px;
+    left: calc(100% - 100px);
+    bottom: 16px;
+    transform: translateX(0);
+  }
+  .btn--more::before {
+    content: 'more...';
+    font-size: 14px;
+  }
+}
+@media (max-width: 575px) {
+  .slider__text {
+    height: 41%;
+  }
+  .slider__text .title--short {
+    margin-bottom: 10px;
+  }
+  .btn--more {
+    width: 70px;
+    height: 40px;
+    border-radius: 10px;
+    left: calc(100% - 80px);
+  }
 }

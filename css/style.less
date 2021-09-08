@@ -7,7 +7,8 @@
     box-sizing: border-box;
 }
 
-body {
+body, html {
+    height: 100%;
     margin: 0;
 }
 
@@ -22,11 +23,65 @@ h1 {
     margin: 70px auto;
 
     .rect();
+    width: @currentWidth;
+    height: 70%;
+
     cursor: pointer;
     user-select: none;
 }
 
-// blocks:
+// ============Blocks===================
 @import "blocks/btn";
 @import "blocks/track";
 @import "blocks/text";
+
+// ============ Media queries============
+@media (max-width: 767px) {
+
+    .container__btn { margin: 40px auto;}
+
+    .slider__text {
+        width: 100%;
+        height: 30%;
+        min-height: 140px;
+
+        & .title {
+            display: none;
+            &--short { display: block}
+        }
+
+        & .message {
+            display: none;
+            &--short { display: block;}
+        }
+    }
+
+    .btn--more {
+        font-size: 0;
+        width: 80px;
+        left: calc(100% - 100px);
+        bottom: 16px;
+        transform: translateX(0);
+
+        &::before {
+            content: 'more...';
+            font-size: 14px;
+        }
+    }
+}
+
+@media (max-width: 575px) {
+
+    .slider__text {
+        height: 41%;
+
+        & .title--short { margin-bottom: 10px;}
+    }
+
+    .btn--more {
+        width: 70px;
+        height: 40px;
+        border-radius: 10px;
+        left: calc(100% - 80px);
+    }
+}
