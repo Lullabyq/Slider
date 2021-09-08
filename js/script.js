@@ -48,11 +48,10 @@ function createAutoScroll() {
   new Promise(res => {
     id = createInterval()
     res(id)
-    console.log(id);
   }).then(id => {
-    box.addEventListener('mouseenter', clear)
+    box.addEventListener('pointerenter', clear)
   }).then(() => {
-    box.addEventListener('mouseleave', set)
+    box.addEventListener('pointerleave', set)
   })
 }
 
@@ -60,15 +59,14 @@ function createAutoScroll() {
 function clear() {
   clearInterval(id)
   flag = "on"
-  console.log("clear:", id);
 }
 
 // EventListener callback func in order to remove listener
 function set() {
   createAutoScroll()
   flag = false
-  box.removeEventListener('mouseenter', clear)
-  box.removeEventListener('mouseleave', set)
+  box.removeEventListener('poiterenter', clear)
+  box.removeEventListener('pointerleave', set)
 }
 
 function moveTrack (direction, initPosit) {
@@ -130,7 +128,6 @@ for (let i = 0; i < images.length; i++) {
 //This listener needs for better developer experiense with window resizing (user don't usually resize browser, esp. on mobile)
 window.addEventListener('resize', () => {
   clearInterval(id)
-  console.log("clear_a", id);
   let count = Math.abs(position / imgWidth)
   let img = document.querySelector('.slider__img')//Dynamic link
 

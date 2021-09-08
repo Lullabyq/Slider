@@ -22,7 +22,8 @@ h1 {
   width: 85%;
   height: 70%;
   cursor: pointer;
-  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
 }
 .btn {
   display: flex;
@@ -53,13 +54,24 @@ h1 {
 .btn--arrow .arrow--left {
   margin-right: 7px;
 }
-.btn--arrow:hover {
-  border: 1px solid #777676;
-  box-shadow: 1px 1px 10px #a6a5a5;
-  transform: scale(1.1);
+@media (hover: hover) {
+  .btn--arrow:hover {
+    border: 1px solid #777676;
+    box-shadow: 1px 1px 10px #a6a5a5;
+    transform: scale(1.1);
+  }
+  .btn--arrow:hover .arrow {
+    opacity: 1;
+  }
 }
-.btn--arrow:hover .arrow {
-  opacity: 1;
+@media (hover: none) {
+  .btn--arrow:active {
+    border: 1px solid #777676;
+    box-shadow: 1px 1px 10px #a6a5a5;
+  }
+  .btn--arrow:active .arrow {
+    opacity: 1;
+  }
 }
 .btn--more {
   text-decoration: none;
@@ -74,8 +86,15 @@ h1 {
   transform: translateX(-50%);
   bottom: 40px;
 }
-.btn--more:hover {
-  box-shadow: 1px 1px 10px #5a5858;
+@media (hover: hover) {
+  .btn--more:hover {
+    box-shadow: 1px 1px 10px #5a5858;
+  }
+}
+@media (hover: none) {
+  .btn--more:active {
+    box-shadow: 1px 1px 10px #5a5858;
+  }
 }
 .btn--disabled {
   display: none;
