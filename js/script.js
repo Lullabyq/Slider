@@ -100,6 +100,24 @@ createAutoScroll()
 toggleBtnVisibility()
 
 box.addEventListener('click', function(event) {
+
+  if (event.target.tagName == 'INPUT') {
+    // Switch text in checkbox
+    let text = event.target.closest('label').firstChild
+
+    if (text.data == 'Show description') {
+      text.data = 'Hide'
+    } else {
+      text.data = 'Show description'
+    }
+
+    //Toggle visibility
+    let bindedClass = event.target.dataset.toggle
+    let interface = box.querySelector(`.${bindedClass}`)
+    interface.hidden = !interface.hidden
+  }
+
+  // Slide images
   let target = event.target.closest('button')
   if (!target) return
 
@@ -122,8 +140,15 @@ for (let i = 0; i < images.length; i++) {
   span.innerHTML = `${i + 1} / ${images.length}`
 }
 
+// 4
+let checkbox = document.querySelector('.checkboxContainer')
+let checkboxText = checkbox.firstChild
 
-// 4 Adaptive features (308px is min divice maintained width)
+
+
+
+
+// 5 Adaptive features (308px is min divice maintained width)
 
 //This listener needs for better developer experiense with window resizing (user don't usually resize browser, esp. on mobile)
 window.addEventListener('resize', () => {

@@ -36,6 +36,7 @@ h1 {
 @import "blocks/btn";
 @import "blocks/track";
 @import "blocks/text";
+@import "blocks/checkbox";
 
 // ============ Media queries============
 @media (max-width: 767px) {
@@ -75,9 +76,18 @@ h1 {
 @media (max-width: 575px) {
 
     .slider__text {
-        height: 41%;
+        height: 30%;
+        padding: 0;
 
-        & .title--short { margin-bottom: 10px;}
+        & .title--short {
+            margin-bottom: 10px;
+            font-size: 22px;
+        }
+
+        & .message--short {
+            padding-left: 10px;
+            font-size: 16px;
+        }
     }
 
     .btn--more {
