@@ -47,6 +47,8 @@ h1 {
         width: 100%;
         height: 30%;
         min-height: 140px;
+        border-bottom-left-radius: 0;
+        border-top-right-radius: @outerRadius;
 
         & .title {
             display: none;
@@ -76,16 +78,15 @@ h1 {
 @media (max-width: 575px) {
 
     .checkboxContainer {
-        top: 100px;
+        top: 110px;
         right: auto;
         left: 10px;
         transition: top .3s ease-out;
     }
 
     .checkboxContainer__top {
-        top: 20px;
+        top: 10px;
         transition: top .3s ease-out .15s;
-
     }
 
     .slider__text {

@@ -3,19 +3,22 @@
 .container {
     .container();
     border-radius: @outerRadius;
-    overflow: hidden;
     position: relative;
+    overflow: hidden;
 
     & .track {
+        scroll-snap-type: x mandatory;
         .container();
+        overflow: auto;
         position: absolute;
         display: flex;
         left: 0;
 
-        transition: left .3s ease-in-out;
+        // transition: left .3s ease-in-out;
 
         & .slider__img {
             .container();
+            scroll-snap-align: start;
             border-radius: @outerRadius;
             min-width: 100%;
             // background: url("https://via.placeholder.com/1000x500");
@@ -38,6 +41,11 @@
                 font-size: 18px;
                 font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
             }
+        }
+
+        &::-webkit-scrollbar {
+            width: 0px;
+            display: none;
         }
 
         .generate-back(@numberOfImages)

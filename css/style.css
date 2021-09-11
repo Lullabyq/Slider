@@ -104,20 +104,22 @@ h1 {
   width: 100%;
   height: 100%;
   border-radius: 10px;
-  overflow: hidden;
   position: relative;
+  overflow: hidden;
 }
 .container .track {
+  scroll-snap-type: x mandatory;
   width: 100%;
   height: 100%;
+  overflow: auto;
   position: absolute;
   display: flex;
   left: 0;
-  transition: left 0.3s ease-in-out;
 }
 .container .track .slider__img {
   width: 100%;
   height: 100%;
+  scroll-snap-align: start;
   border-radius: 10px;
   min-width: 100%;
 }
@@ -135,6 +137,10 @@ h1 {
   color: #fff;
   font-size: 18px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+}
+.container .track::-webkit-scrollbar {
+  width: 0px;
+  display: none;
 }
 .container .track .img-1 {
   background: url(../img/food1.jpg) center;
@@ -198,6 +204,8 @@ h1 {
   opacity: 0.9;
   box-shadow: 0px 0px 10px #8d8b8b;
   transition: opacity 0.5s linear;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 .slider__text--hidden {
   opacity: 0;
@@ -313,6 +321,8 @@ h1 {
     width: 100%;
     height: 30%;
     min-height: 140px;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 10px;
   }
   .slider__text .title {
     display: none;
@@ -340,13 +350,13 @@ h1 {
 }
 @media (max-width: 575px) {
   .checkboxContainer {
-    top: 100px;
+    top: 110px;
     right: auto;
     left: 10px;
     transition: top 0.3s ease-out;
   }
   .checkboxContainer__top {
-    top: 20px;
+    top: 10px;
     transition: top 0.3s ease-out 0.15s;
   }
   .slider__text {
