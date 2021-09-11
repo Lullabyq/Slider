@@ -104,17 +104,19 @@ box.addEventListener('click', function(event) {
   if (event.target.tagName == 'INPUT') {
     // Switch text in checkbox
     let text = event.target.closest('label').firstChild
+    let bindedClass = event.target.dataset.toggle
+    let interface = box.querySelector(`.${bindedClass}`)
 
     if (text.data == 'Show description') {
       text.data = 'Hide'
+      interface.classList.remove('slider__text--hidden')
+      text.parentNode.classList.remove('checkboxContainer__top')
     } else {
       text.data = 'Show description'
-    }
+      interface.classList.add('slider__text--hidden')
+      text.parentNode.classList.add('checkboxContainer__top')
 
-    //Toggle visibility
-    let bindedClass = event.target.dataset.toggle
-    let interface = box.querySelector(`.${bindedClass}`)
-    interface.hidden = !interface.hidden
+    }
   }
 
   // Slide images

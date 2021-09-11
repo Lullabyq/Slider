@@ -1,12 +1,22 @@
 // main: ../style.less
 
 .checkboxContainer {
-    position: relative;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    z-index: 1000;
 
-    display: inline-block;
+    display: flex;
+    align-items: center;
     height: @checkboxHeight;
     line-height: @checkboxHeight;
-    padding-left: 40px;
+    padding: 5px 10px 5px 40px;
+
+    opacity: .65;
+    color: #fff;
+    background-color: rgb(71, 71, 71);
+
+    border-radius: 10px;
 
     cursor: pointer;
     user-select: none;
@@ -15,52 +25,57 @@
         &:hover span {
             background-color: darken(@checkboxPrimaryColor, 10%);
             transform: scale(1.3);
-            border-radius: calc(@checkboxHeight * .3);
+            border-radius: calc(@checkboxSide * .3);
         }
     }
 
     @media (hover: none) {
+        &:active, span { opacity: 1;}
+
         &:active span {
             background-color: darken(@checkboxPrimaryColor, 10%);
             transform: scale(1.3);
-            border-radius: calc(@checkboxHeight * .3);
+            border-radius: calc(@checkboxSide * .3);
         }
     }
 
     & input {
         position: absolute;
+        top: 0;
+        left: 0;
         width: 0;
         height: 0;
+        z-index: -1000;
     }
 
     & span {
         position: absolute;
         padding-left: 10px;
-        top: 0;
+        top: calc ((@checkboxHeight - @checkboxSide) / 2);
         left: 10px;
 
-        width: @checkboxHeight;
-        height: @checkboxHeight;
+        width: @checkboxSide;
+        height: @checkboxSide;
         background-color: @checkboxPrimaryColor;
-        border-radius: calc(@checkboxHeight * .1);
+        border-radius: calc(@checkboxSide * .1);
 
         transition: transform .1s linear;
 
-        &::after {
+        &::after { // this is arrow down
             content: "";
             background-color: transparent;
             display: none;
 
             position: absolute;
             top: 0;
-            left: calc(@checkboxHeight * .25);
+            left: calc(@checkboxSide * .25);
 
-            @widthlocal: calc(@checkboxHeight / 1.5);
+            @widthlocal: calc(@checkboxSide / 1.5);
             width: @widthlocal; // height of left line of mark
             height: @widthlocal; // height of right line of mark
 
-            border-left: calc(@checkboxHeight * .15) solid @checkboxMarkColor; // width of left line
-            border-bottom: calc(@checkboxHeight * .15) solid @checkboxMarkColor; // width of right line
+            border-left: calc(@checkboxSide * .15) solid @checkboxMarkColor; // width of left line
+            border-bottom: calc(@checkboxSide * .15) solid @checkboxMarkColor; // width of right line
             border-radius: calc(@widthlocal * .1);
 
             transform: rotateZ(-45deg);
