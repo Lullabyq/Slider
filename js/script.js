@@ -9,18 +9,16 @@ let btnLeft = document.querySelector('.btn--left')
 let btnRight = document.querySelector('.btn--right')
 let box = document.querySelector('.container__btn')
 
- function placeBtns() {
+function placeBtns() {
   let translate = btnLeft.offsetWidth / 2
 
   btnLeft.style.left = -translate + 'px'
   btnLeft.style.top = box.offsetHeight / 2 - translate + 'px'
   btnRight.style.top = box.offsetHeight / 2 - translate + 'px'
   btnRight.style.right = -translate + 'px'
- }
+}
 
 placeBtns()
-
-// box.clientHeight = box.offsetHeight
 
 
 // 2. (Main part) Makes slider work
@@ -129,8 +127,7 @@ toggleBtnVisibility()
 
 box.addEventListener('click', function(event) {
 
-  if (event.target.tagName == 'INPUT') {
-    // Switch text in checkbox
+  if (event.target.tagName == 'INPUT') { // Switch text in checkbox
     let text = event.target.closest('label').firstChild
     let bindedClass = event.target.dataset.toggle
     let interface = box.querySelector(`.${bindedClass}`)
@@ -166,6 +163,14 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 window.addEventListener('load', () => {
+  let checkbox = box.querySelector('.checkboxContainer input')
+
+  if (performance.getEntriesByType('navigation')
+    .map(nav => nav.type)
+    .includes('back_forward')) {
+    checkbox.checked = true
+  }
+
   document.body.style.display = ''
 })
 
@@ -190,15 +195,10 @@ for (let i = 0; i < images.length; i++) {
 //This listener needs for better developer experiense with window resizing (user don't usually resize browser, esp. on mobile)
 window.addEventListener('resize', () => {
   clearInterval(id)
-  let count = Math.abs(track.scrollLeft / imgWidth)
   let img = document.querySelector('.slider__img')//Dynamic link
 
   imgWidth = img.offsetWidth // Current width of img
-  track.scrollLeft = -imgWidth * count
   trackLength = imgWidth * (numberOfImages - 1) // Update total length
-
-  // Resize on current slide feels weird:
-  // moveTrack('length', position)
 
   moveTrack('custom', 0)
   if (!flag) createAutoScroll() // in case you resize browser with mouseover the slider (ye, you can do it in devTools)
