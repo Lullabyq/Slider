@@ -20,7 +20,7 @@ h1 {
   max-height: 500px;
   border-radius: 10px;
   width: 85%;
-  height: 70%;
+  height: calc(100% - 200px);
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
@@ -222,8 +222,7 @@ h1 {
 }
 .slider__text .message {
   margin-top: 20px;
-  margin-bottom: 20px;
-  height: 270px;
+  height: calc(100% - 230px);
   line-height: 1.5;
   overflow: auto;
   padding-left: calc(45px/2);
@@ -231,9 +230,11 @@ h1 {
 }
 .slider__text .message ol {
   padding-left: 20px;
+  margin: 0;
 }
 .slider__text .message em {
-  margin: 20px 0 20px;
+  display: block;
+  margin: 20px 0;
 }
 .slider__text .message--short {
   display: none;
@@ -377,5 +378,11 @@ h1 {
     height: 40px;
     border-radius: 10px;
     left: calc(100% - 80px);
+  }
+}
+@media (max-height: 561px) {
+  .container__btn {
+    margin: 30px auto;
+    height: calc(100% - 100px);
   }
 }

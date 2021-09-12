@@ -8,14 +8,19 @@ let timerDelay = 4000 // (in ms)
 let btnLeft = document.querySelector('.btn--left')
 let btnRight = document.querySelector('.btn--right')
 let box = document.querySelector('.container__btn')
-let translate = btnLeft.offsetWidth / 2
 
-btnLeft.style.left = -translate + 'px'
-btnLeft.style.top = box.offsetHeight / 2 -translate + 'px'
-btnRight.style.top = box.offsetHeight / 2 -translate + 'px'
-btnRight.style.right = -translate + 'px'
+ function placeBtns() {
+  let translate = btnLeft.offsetWidth / 2
 
-box.clientHeight = box.offsetHeight
+  btnLeft.style.left = -translate + 'px'
+  btnLeft.style.top = box.offsetHeight / 2 - translate + 'px'
+  btnRight.style.top = box.offsetHeight / 2 - translate + 'px'
+  btnRight.style.right = -translate + 'px'
+ }
+
+placeBtns()
+
+// box.clientHeight = box.offsetHeight
 
 
 // 2. (Main part) Makes slider work
@@ -99,13 +104,13 @@ function disableBtn(state) {
 // hide text area by default on mobile
 function optimizeForMobile() {
   let checkbox = box.querySelector('.checkboxContainer input')
-
-  if (document.documentElement.clientWidth < 575) {
+  if (document.documentElement.clientWidth < 575
+    || document.documentElement.clientHeight < 460) {
     disableBtn('none')
     if (!checkbox.checked) checkbox.click()
   } else {
-    if (checkbox.checked) checkbox.click()
     disableBtn('')
+    if (checkbox.checked) checkbox.click()
   }
 }
 

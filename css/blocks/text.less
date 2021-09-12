@@ -25,9 +25,7 @@
         user-select: none;
         z-index: -100;
 
-        & .btn {
-            display: none;
-        }
+        & .btn { display: none;}
     }
 
     & .title--short {
@@ -38,8 +36,7 @@
 
     & .message {
         margin-top: 20px;
-        margin-bottom: 20px;
-        height: 270px;
+        height: calc(100% - 230px);
         line-height: 1.5;
         overflow: auto;
         padding-left: calc(@btnRadius/2);
@@ -47,10 +44,12 @@
 
         & ol {
             padding-left: 20px;
+            margin: 0;
         }
 
         & em {
-            margin: 20px 0 20px;
+            display: block;
+            margin: 20px 0;
         }
 
         &--short {

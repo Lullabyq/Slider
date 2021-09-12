@@ -24,7 +24,7 @@ h1 {
 
     .rect();
     width: @currentWidth;
-    height: 70%;
+    height: calc(100% - 200px);
 
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
@@ -109,5 +109,13 @@ h1 {
         height: 40px;
         border-radius: 10px;
         left: calc(100% - 80px);
+    }
+}
+
+@media (max-height: 561px) {
+
+    .container__btn {
+        margin: 30px auto;
+        height: calc(100% - 100px);
     }
 }
