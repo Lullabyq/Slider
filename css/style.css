@@ -210,6 +210,7 @@ h1 {
 .slider__text--hidden {
   opacity: 0;
   user-select: none;
+  z-index: -100;
 }
 .slider__text--hidden .btn {
   display: none;

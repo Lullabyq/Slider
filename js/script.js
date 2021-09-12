@@ -19,6 +19,8 @@ box.clientHeight = box.offsetHeight
 
 
 // 2. (Main part) Makes slider work
+
+//======================Declaration area=========================
 function toggleBtnVisibility() {
   if (trackLength - track.scrollLeft < imgWidth / 2) {
     btnRight.classList.add('btn--disabled')
@@ -35,13 +37,11 @@ function toggleBtnVisibility() {
 // When mouseout event happens slider starts autoscroll
 function createInterval() {
   return setInterval(() => {
-    if (track.scrollLeft == trackLength) {
+    if ((trackLength - track.scrollLeft) < imgWidth/20 ) { //
       track.scrollLeft = 0
       btnRight.classList.remove('btn--disabled')
       btnLeft.click()
-    } else {
-      btnRight.click()
-    }
+    } else btnRight.click()
   }, timerDelay)
 }
 
@@ -90,6 +90,25 @@ function moveTrack (direction, initPosit) {
   toggleBtnVisibility()
 }
 
+// hide btns on mobile
+function disableBtn(state) {
+  btnLeft.style.display = state
+  btnRight.style.display = state
+}
+
+// hide text area by default on mobile
+function optimizeForMobile() {
+  let checkbox = box.querySelector('.checkboxContainer input')
+
+  if (document.documentElement.clientWidth < 575) {
+    disableBtn('none')
+    if (!checkbox.checked) checkbox.click()
+  } else {
+    if (checkbox.checked) checkbox.click()
+    disableBtn('')
+  }
+}
+
 let track = document.querySelector('.track')
 let img = document.querySelector('.slider__img')
 let imgWidth = img.offsetWidth
@@ -101,7 +120,7 @@ createAutoScroll()
 toggleBtnVisibility()
 
 
-//============Event listeners Block======================
+//=================Event listeners Block==========================
 
 box.addEventListener('click', function(event) {
 
@@ -136,20 +155,16 @@ box.addEventListener('touchmove', () => {
   setTimeout(toggleBtnVisibility, 200)
 })
 
-// In order to use touch swipes on mobile
-function disableBtn() {
-  if (document.documentElement.clientWidth < 575) {
-    btnLeft.style.display = 'none'
-    btnRight.style.display = 'none'
-  } else {
-    btnLeft.style.display = ''
-    btnRight.style.display = ''
-  }
-}
+document.addEventListener('DOMContentLoaded', () => {
+  document.body.style.display = 'none'
+  optimizeForMobile()
+})
 
-window.addEventListener('resize', disableBtn)
-window.addEventListener('load', disableBtn)
+window.addEventListener('load', () => {
+  document.body.style.display = ''
+})
 
+window.addEventListener('resize', optimizeForMobile)
 // =============================================================
 
 
