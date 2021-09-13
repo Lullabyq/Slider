@@ -158,7 +158,7 @@ box.addEventListener('touchmove', () => {
   setTimeout(toggleBtnVisibility, 200)
 })
 
-
+// Drag on desktop
 let start, dateStart
 
 box.addEventListener('mousedown', event => {
@@ -183,6 +183,7 @@ box.addEventListener('mouseup', e => {
     btnRight.click()
   }
 })
+//==
 
 document.addEventListener('keydown', event => {
 
@@ -245,6 +246,3 @@ window.addEventListener('resize', () => {
   moveTrack('custom', 0)
   if (!flag) createAutoScroll() // in case you resize browser with mouseover the slider (ye, you can do it in devTools)
 })
-
-// 4. Drag on desktop
-
