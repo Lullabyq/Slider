@@ -1,17 +1,16 @@
-//0. To add img toggle this variable:
+// To add img toggle this variable:
 let numberOfImages = 6
 // if you want change speed of slider:
 let timerDelay = 4000 // (in ms)
 
 
-// 1. Places buttons of slider
 let btnLeft = document.querySelector('.btn--left')
 let btnRight = document.querySelector('.btn--right')
 let box = document.querySelector('.container__btn')
+let translate = btnLeft.offsetWidth / 2
+
 
 function placeBtns() {
-  let translate = btnLeft.offsetWidth / 2
-
   btnLeft.style.left = -translate + 'px'
   btnLeft.style.top = box.offsetHeight / 2 - translate + 'px'
   btnRight.style.top = box.offsetHeight / 2 - translate + 'px'
@@ -21,7 +20,7 @@ function placeBtns() {
 placeBtns()
 
 
-// 2. (Main part) Makes slider work
+// 1. (Main part) Makes slider work
 
 //======================Declaration area=========================
 function toggleBtnVisibility() {
@@ -40,10 +39,9 @@ function toggleBtnVisibility() {
 // When mouseout event happens slider starts autoscroll
 function createInterval() {
   return setInterval(() => {
-    if ((trackLength - track.scrollLeft) < imgWidth/20 ) { //
+    if ((trackLength - track.scrollLeft) < imgWidth/20 ) {
       track.scrollLeft = 0
-      btnRight.classList.remove('btn--disabled')
-      btnLeft.click()
+      setTimeout(toggleBtnVisibility, 600)
     } else btnRight.click()
   }, timerDelay)
 }
@@ -89,8 +87,11 @@ function moveTrack (direction, initPosit) {
 
     default: position = initPosit
   }
+
   track.scrollLeft = position
-  toggleBtnVisibility()
+  // toggleBtnVisibility()
+  // for scroll-behaviour: smooth;:
+  setTimeout(toggleBtnVisibility, 300)
 }
 
 // hide btns on mobile
@@ -117,7 +118,7 @@ let img = document.querySelector('.slider__img')
 let imgWidth = img.offsetWidth
 let trackLength = imgWidth * (numberOfImages - 1)
 let id   // timer id
-let flag // indicator for resize listentrack.scrollLeft
+let flag // indicator of current position of pointer (on box or not)
 
 createAutoScroll()
 toggleBtnVisibility()
@@ -147,14 +148,51 @@ box.addEventListener('click', function(event) {
   if (!target) return
 
   if (target.classList.contains("btn--right")) {
-      moveTrack('right')
-    } else if (target.classList.contains("btn--left")) {
-      moveTrack('left')
+    moveTrack('right')
+  } else if (target.classList.contains("btn--left")) {
+    moveTrack('left')
   }
 })
 
 box.addEventListener('touchmove', () => {
   setTimeout(toggleBtnVisibility, 200)
+})
+
+
+let start, dateStart
+
+box.addEventListener('mousedown', event => {
+  start = event.clientX
+  dateStart = new Date()
+})
+
+box.addEventListener('mousemove', event => event.preventDefault())
+box.addEventListener('dblclick', event => event.preventDefault())
+
+box.addEventListener('mouseup', e => {
+  let end = e.clientX
+  let dateEnd = new Date()
+
+  if (end - start > imgWidth / 3
+    || (end - start) / (dateEnd - dateStart) > 1.4) {
+
+    btnLeft.click()
+  } else if (end - start < -imgWidth / 3
+    || (start - end) / (dateEnd - dateStart) > 1.4) {
+
+    btnRight.click()
+  }
+})
+
+document.addEventListener('keydown', event => {
+
+  if (event.code != 'ArrowRight' && event.code != 'ArrowLeft') return
+  clearInterval(id)
+
+  if (event.code == 'ArrowRight') btnRight.click()
+  if (event.code == 'ArrowLeft') btnLeft.click()
+
+  if (!flag) createAutoScroll()
 })
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -166,19 +204,23 @@ window.addEventListener('load', () => {
   let checkbox = box.querySelector('.checkboxContainer input')
 
   if (performance.getEntriesByType('navigation')
-    .map(nav => nav.type)
-    .includes('back_forward')) {
+    .map(nav => nav.type).includes('back_forward')
+    && (document.documentElement.clientWidth < 575
+    || document.documentElement.clientHeight < 460) ) {
     checkbox.checked = true
   }
 
   document.body.style.display = ''
 })
 
-window.addEventListener('resize', optimizeForMobile)
+window.addEventListener('resize', () => {
+  optimizeForMobile()
+  placeBtns()
+})
 // =============================================================
 
 
-// 3. Places progressBar for slider
+// 2. Places progressBar for slider
 let images = track.querySelectorAll('.slider__img')
 let progress = track.querySelectorAll('.progress')
 
@@ -190,7 +232,7 @@ for (let i = 0; i < images.length; i++) {
 }
 
 
-// 4 Adaptive features (308px is min divice maintained width)
+// 3. Adaptive features (308px is min divice maintained width)
 
 //This listener needs for better developer experiense with window resizing (user don't usually resize browser, esp. on mobile)
 window.addEventListener('resize', () => {
@@ -203,3 +245,6 @@ window.addEventListener('resize', () => {
   moveTrack('custom', 0)
   if (!flag) createAutoScroll() // in case you resize browser with mouseover the slider (ye, you can do it in devTools)
 })
+
+// 4. Drag on desktop
+

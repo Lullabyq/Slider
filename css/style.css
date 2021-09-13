@@ -108,13 +108,15 @@ h1 {
   overflow: hidden;
 }
 .container .track {
-  scroll-snap-type: x mandatory;
   width: 100%;
   height: 100%;
-  overflow: auto;
   position: absolute;
   display: flex;
   left: 0;
+  overflow: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  transition: scroll 0.3s ease-in-out;
 }
 .container .track .slider__img {
   width: 100%;
@@ -223,6 +225,7 @@ h1 {
 .slider__text .message {
   margin-top: 20px;
   height: calc(100% - 230px);
+  min-height: 50px;
   line-height: 1.5;
   overflow: auto;
   padding-left: calc(45px/2);
@@ -384,5 +387,37 @@ h1 {
   .container__btn {
     margin: 30px auto;
     height: calc(100% - 100px);
+  }
+}
+@media (max-height: 460px) {
+  .slider__text {
+    padding: 0 10px;
+  }
+  .slider__text h2 {
+    text-align: center;
+    margin: 15px 0;
+  }
+  .slider__text .message {
+    margin-top: 10px;
+    min-height: 80px;
+    line-height: 1.25;
+  }
+  .slider__text .message em {
+    margin: 10px;
+  }
+  .slider__text .btn--more {
+    bottom: 20px;
+  }
+}
+@media (max-height: 340px) {
+  .slider__text h2 {
+    display: none;
+  }
+  .slider__text .message {
+    display: none;
+  }
+  .slider__text .btn--more {
+    bottom: 50%;
+    transform: translate(-50%, 50%);
   }
 }

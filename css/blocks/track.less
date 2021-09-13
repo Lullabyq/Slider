@@ -7,12 +7,15 @@
     overflow: hidden;
 
     & .track {
-        scroll-snap-type: x mandatory;
         .container();
-        overflow: auto;
         position: absolute;
         display: flex;
         left: 0;
+
+        overflow: auto;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        transition: scroll .3s ease-in-out;
 
         & .slider__img {
             .container();
