@@ -24,6 +24,7 @@ h1 {
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
+  user-select: none;
 }
 .btn {
   display: flex;
@@ -108,13 +109,15 @@ h1 {
   overflow: hidden;
 }
 .container .track {
-  scroll-snap-type: x mandatory;
   width: 100%;
   height: 100%;
-  overflow: auto;
   position: absolute;
   display: flex;
   left: 0;
+  overflow: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  transition: scroll 0.3s ease-in-out;
 }
 .container .track .slider__img {
   width: 100%;
@@ -203,14 +206,14 @@ h1 {
   background-color: #ffffff;
   opacity: 0.9;
   box-shadow: 0px 0px 10px #8d8b8b;
-  transition: opacity 0.5s linear;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
+  transition: opacity 0.3s linear;
 }
 .slider__text--hidden {
   opacity: 0;
   user-select: none;
-  z-index: -100;
+  animation: fade 0.2s linear 0.3s;
 }
 .slider__text--hidden .btn {
   display: none;
@@ -223,6 +226,7 @@ h1 {
 .slider__text .message {
   margin-top: 20px;
   height: calc(100% - 230px);
+  min-height: 50px;
   line-height: 1.5;
   overflow: auto;
   padding-left: calc(45px/2);
@@ -240,6 +244,14 @@ h1 {
   display: none;
   margin: 10px 20% 10px 0;
   min-width: 130;
+}
+@keyframes fade {
+  0% {
+    z-index: 100;
+  }
+  100% {
+    z-index: -100;
+  }
 }
 .checkboxContainer {
   position: absolute;
@@ -384,5 +396,37 @@ h1 {
   .container__btn {
     margin: 30px auto;
     height: calc(100% - 100px);
+  }
+}
+@media (max-height: 460px) {
+  .slider__text {
+    padding: 0 10px;
+  }
+  .slider__text h2 {
+    text-align: center;
+    margin: 15px 0;
+  }
+  .slider__text .message {
+    margin-top: 10px;
+    min-height: 80px;
+    line-height: 1.25;
+  }
+  .slider__text .message em {
+    margin: 10px;
+  }
+  .slider__text .btn--more {
+    bottom: 20px;
+  }
+}
+@media (max-height: 340px) {
+  .slider__text h2 {
+    display: none;
+  }
+  .slider__text .message {
+    display: none;
+  }
+  .slider__text .btn--more {
+    bottom: 50%;
+    transform: translate(-50%, 50%);
   }
 }

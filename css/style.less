@@ -29,7 +29,7 @@ h1 {
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
-    // user-select: none;
+    user-select: none;
 }
 
 // ============Blocks===================
@@ -117,5 +117,41 @@ h1 {
     .container__btn {
         margin: 30px auto;
         height: calc(100% - 100px);
+    }
+}
+
+@media (max-height: 460px) {
+
+    .slider__text {
+        padding: 0 10px;
+
+        & h2 {
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        & .message {
+            margin-top: 10px;
+            min-height: 80px;
+            line-height: 1.25;
+
+            & em { margin: 10px;}
+        }
+
+        & .btn--more { bottom: 20px;}
+    }
+}
+
+@media (max-height: 340px) {
+
+    .slider__text {
+        & h2{ display: none;}
+
+        & .message { display: none;}
+
+        & .btn--more {
+            bottom: 50%;
+            transform: translate(-50%, 50%)
+        }
     }
 }
